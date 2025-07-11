@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Exemplo de customização global */
+body {
+    @apply bg-white text-black;
+}
+
+/* Adicione outros estilos globais abaixo se necessário */
