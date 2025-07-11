@@ -1,10 +1,10 @@
 "use client";
 import { signOut, useSession } from 'next-auth/react';
 import { useSearchParams } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 import toast from 'react-hot-toast';
 
-export default function DashboardPage() {
+function DashboardContent() {
   const { data: session, status } = useSession();
   const searchParams = useSearchParams();
 
@@ -49,5 +49,20 @@ export default function DashboardPage() {
         </button>
       </div>
     </main>
+  );
+}
+
+export default function DashboardPage() {
+  return (
+    <Suspense fallback={
+      <main className="flex min-h-screen items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto"></div>
+          <p className="text-gray-600 mt-4">Carregando...</p>
+        </div>
+      </main>
+    }>
+      <DashboardContent />
+    </Suspense>
   );
 } 

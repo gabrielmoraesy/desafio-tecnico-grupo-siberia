@@ -13,7 +13,7 @@ export default function TabsAuth() {
 
   return (
     <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-      <TabsList className="w-full md:w-64 flex justify-center grid-cols-2 bg-[#F5F7FD] rounded-[18px] p-1 mb-4 mx-auto md:mx-0">
+      <TabsList className="w-full md:w-64 flex justify-center bg-[#F5F7FD] rounded-[18px] p-1 mb-4 mx-auto md:mx-0">
         <TabsTrigger
           value="login"
           className="flex-1 data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-gray-900 bg-[#F5F7FD] rounded-[18px] text-xs font-semibold transition-colors text-[#697889]"
