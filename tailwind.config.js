@@ -11,11 +11,11 @@ module.exports = {
         sans: ['var(--font-be-vietnam-pro)', 'system-ui', 'sans-serif'],
       },
       colors: {
-        primary: '#00218F', // azul forte
+        primary: '#00218F',
         secondary: '#2ad2c9',
         background: '#F5F7FD',
         accent: '#F6F7FB',
-        dark: '#1B1D28', // cor escura para textos
+        dark: '#1B1D28', 
         gray: {
           50: '#F5F7FD',
           100: '#f6f7fb',

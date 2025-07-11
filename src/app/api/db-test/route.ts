@@ -3,10 +3,8 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest) {
     try {
-        // Testa conexão com o banco
         await prisma.$connect();
 
-        // Verifica se as tabelas existem
         const users = await prisma.user.findMany({ take: 1 });
 
         return NextResponse.json({

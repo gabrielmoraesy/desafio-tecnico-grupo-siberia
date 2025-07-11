@@ -6,7 +6,6 @@ const execAsync = promisify(exec);
 
 export async function POST(req: NextRequest) {
     try {
-        // Executa as migrações
         const { stdout, stderr } = await execAsync('npx prisma migrate deploy');
 
         return NextResponse.json({
