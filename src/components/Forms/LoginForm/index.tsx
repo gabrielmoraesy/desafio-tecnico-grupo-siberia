@@ -4,7 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from '../../../schemas/auth';
 import { z } from "zod";
 import { signIn } from "next-auth/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import toast from "react-hot-toast";
 import LogoGoogle from '../../../assets/logo-google.png';
@@ -19,10 +20,18 @@ interface LoginFormProps {
 
 export default function LoginForm({ onSwitchTab }: LoginFormProps) {
   const [error, setError] = useState("");
+  const searchParams = useSearchParams();
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
   });
   const [remember, setRemember] = useState(true);
+
+  useEffect(() => {
+    const authError = searchParams.get('error');
+    if (authError === 'AccountExists') {
+      toast.error('Use seu email e senha para fazer login.');
+    }
+  }, [searchParams]);
 
   const onSubmit = async (data: z.infer<typeof loginSchema>) => {
     setError("");

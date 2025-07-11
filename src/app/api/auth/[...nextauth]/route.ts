@@ -34,8 +34,19 @@ const handler = NextAuth({
   ],
   callbacks: {
     async signIn({ user, account, profile }) {
+      if (account?.provider === "google") {
+        // Verificar se usuário já existe com senha (cadastrado pelo formulário)
+        const existingUser = await prisma.user.findUnique({
+          where: { email: user.email! }
+        });
+        
+        if (existingUser && existingUser.password) {
+          // Usuário já tem conta com senha, redirecionar para login com erro
+          return '/login?error=AccountExists';
+        }
+      }
+      
       // O PrismaAdapter gerencia automaticamente a criação/atualização de usuários OAuth
-      // Apenas permitir o login
       return true;
     },
     async jwt({ token, user, account }) {
