@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { Suspense } from 'react';
 
 import backgroundLogin from '../../assets/background-login.png';
 import logo from '../../assets/logo.png';
@@ -23,7 +24,9 @@ export default function LoginPage() {
             <div className="flex justify-center md:justify-start mb-6 md:mb-8">
               <Image src={logo} alt="tamo junto" width={190} height={39} priority />
             </div>
-            <TabsAuth />
+            <Suspense fallback={<div>Carregando...</div>}>
+              <TabsAuth />
+            </Suspense>
           </div>
         </div>
       </div>
