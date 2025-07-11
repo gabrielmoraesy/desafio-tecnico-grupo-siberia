@@ -7,11 +7,15 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-be-vietnam-pro)', 'system-ui', 'sans-serif'],
+      },
       colors: {
         primary: '#00218F', // azul forte
         secondary: '#2ad2c9',
         background: '#F5F7FD',
         accent: '#F6F7FB',
+        dark: '#1B1D28', // cor escura para textos
         gray: {
           50: '#F5F7FD',
           100: '#f6f7fb',

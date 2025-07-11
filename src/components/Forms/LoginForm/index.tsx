@@ -34,39 +34,48 @@ export default function LoginForm({ onSwitchTab }: LoginFormProps) {
   };
 
   return (
-    <form data-login-form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-      <h2 className="text-2xl font-bold text-gray-900 mb-1">Entrar</h2>
-      <p className="text-gray-500 mb-4">Non sit purus tempus malesuada poten</p>
+    <form data-login-form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <div className="mb-3">
+        <h2 className="text-xl md:text-2xl font-bold text-dark mb-1">Entrar</h2>
+        <p className="text-gray-500 text-sm">Non sit purus tempus malesuada poten</p>
+      </div>
+
       <div>
-        <label className="block mb-1 text-gray-700 font-medium">Email</label>
+        <label className="block mb-1 text-dark font-medium text-sm">Email</label>
         <input type="email" {...register("email")}
           placeholder="e-mail@website.com"
-          className="w-full rounded-lg border border-gray-200 px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" />
-        {errors.email && <span className="text-red-500 text-sm">{errors.email.message}</span>}
+          className="w-full rounded-lg border border-gray-200 px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-sm min-h-[51px]" />
+        {errors.email && <span className="text-red-500 text-xs">{errors.email.message}</span>}
       </div>
+
       <div>
-        <label className="block mb-1 text-gray-700 font-medium">Senha</label>
+        <label className="block mb-1 text-dark font-medium text-sm">Senha</label>
         <input type="password" {...register("password")}
           placeholder="min. 8 caracteres"
-          className="w-full rounded-lg border border-gray-200 px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" />
-        {errors.password && <span className="text-red-500 text-sm">{errors.password.message}</span>}
+          className="w-full rounded-lg border border-gray-200 px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-sm min-h-[51px]" />
+        {errors.password && <span className="text-red-500 text-xs">{errors.password.message}</span>}
       </div>
-      <div className="flex items-center justify-between mb-2">
-        <label className="flex items-center gap-2 text-gray-700 text-sm select-none">
+
+      <div className="flex items-center justify-between py-2">
+        <label className="flex items-center gap-2 text-gray-700 text-xs select-none font-medium">
           <input type="checkbox" checked={remember} onChange={() => setRemember(!remember)} className="accent-primary w-4 h-4 rounded" />
           Lembrar
         </label>
-        <a href="#" className="text-primary text-sm font-medium hover:underline">Esqueceu a senha?</a>
+        <a href="#" className="text-primary text-xs font-medium hover:underline">Esqueceu a senha?</a>
       </div>
-      {error && <div className="text-red-500 text-sm mb-2">{error}</div>}
-      <button type="submit" className="w-full bg-primary hover:bg-dark text-white font-semibold rounded-lg py-3 transition disabled:opacity-60" disabled={isSubmitting}>
+
+      {error && <div className="text-red-500 text-xs mb-2">{error}</div>}
+
+      <button type="submit" className="w-full bg-primary hover:bg-dark text-white font-semibold rounded-lg py-3 transition disabled:opacity-60 text-sm min-h-[51px]" disabled={isSubmitting}>
         Entrar
       </button>
-      <button type="button" className="w-full flex items-center justify-center gap-2 border border-gray-200 rounded-lg py-3 font-semibold text-gray-700 bg-white hover:bg-gray-50 transition" onClick={() => signIn("google", { callbackUrl: "/dashboard" })}>
-        <Image src={LogoGoogle} alt="Google" width={20} height={20} />
+
+      <button type="button" className="w-full flex items-center justify-center gap-2 border border-gray-200 rounded-lg py-3 font-semibold text-gray-700 bg-white hover:bg-gray-50 transition text-sm min-h-[51px]" onClick={() => signIn("google", { callbackUrl: "/dashboard" })}>
+        <Image src={LogoGoogle} alt="Google" width={18} height={18} />
         Entrar com o Google
       </button>
-      <div className="text-center text-sm text-gray-700 mt-2">
+
+      <div className="text-center text-xs text-dark pt-2 font-medium">
         Ainda não tem conta? <button type="button" onClick={() => onSwitchTab?.("register")} className="text-primary font-semibold hover:underline bg-transparent border-none cursor-pointer">Assine agora</button>
       </div>
     </form>

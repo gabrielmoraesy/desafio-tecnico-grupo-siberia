@@ -1,10 +1,23 @@
 "use client";
 import { signOut, useSession } from 'next-auth/react';
+import { useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
+import toast from 'react-hot-toast';
 
 export default function DashboardPage() {
   const { data: session, status } = useSession();
+  const searchParams = useSearchParams();
 
-  console.log("session", session);
+  useEffect(() => {
+    const message = searchParams.get('message');
+    if (message === 'already-logged-in') {
+      toast.success('Você já está logado!');
+
+      const url = new URL(window.location.href);
+      url.searchParams.delete('message');
+      window.history.replaceState({}, '', url.toString());
+    }
+  }, [searchParams]);
 
   if (status === 'loading') {
     return (

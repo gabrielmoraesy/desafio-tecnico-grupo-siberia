@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Exemplo de customização global */
 body {
-    @apply bg-white text-black;
+    @apply bg-white text-black font-sans;
 }
-
-/* Adicione outros estilos globais abaixo se necessário */

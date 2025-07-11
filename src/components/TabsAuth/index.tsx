@@ -12,17 +12,17 @@ export default function TabsAuth() {
   };
 
   return (
-    <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full max-w-md mx-auto">
-      <TabsList className="w-[50%] flex justify-center grid-cols-2 bg-[#F5F7FD] rounded-[18px] p-1 mb-6">
+    <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+      <TabsList className="w-full md:w-64 flex justify-center grid-cols-2 bg-[#F5F7FD] rounded-[18px] p-1 mb-4 mx-auto md:mx-0">
         <TabsTrigger
           value="login"
-          className="flex-1 data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-gray-900 bg-[#F5F7FD] rounded-[18px] text-base font-semibold transition-colors"
+          className="flex-1 data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-gray-900 bg-[#F5F7FD] rounded-[18px] text-xs font-semibold transition-colors text-[#697889]"
         >
           Entrar
         </TabsTrigger>
         <TabsTrigger
           value="register"
-          className="flex-1 data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-gray-900 bg-[#F5F7FD] rounded-[18px] text-base font-semibold transition-colors"
+          className="flex-1 data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-gray-900 bg-[#F5F7FD] rounded-[18px] text-xs font-semibold transition-colors text-[#697889]"
         >
           Cadastrar
         </TabsTrigger>
