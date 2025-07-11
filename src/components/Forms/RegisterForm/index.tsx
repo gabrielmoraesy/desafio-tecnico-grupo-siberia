@@ -10,6 +10,10 @@ import toast from "react-hot-toast";
 import { signIn } from "next-auth/react";
 import { Check } from "lucide-react";
 import LogoGoogle from '../../../assets/logo-google.png';
+import { Button } from "../../ui/button";
+import { Input } from "../../ui/input";
+import { Checkbox } from "../../ui/checkbox";
+import { Label } from "../../ui/label";
 
 type RegisterFormType = z.infer<typeof registerSchema>;
 
@@ -87,59 +91,79 @@ export default function RegisterForm({ onSwitchTab }: RegisterFormProps) {
       </div>
 
       <div>
-        <label className="block mb-1 text-dark font-medium text-sm">Nome</label>
-        <input type="text" {...register("name")}
+        <Label className="block mb-1 text-dark font-medium text-sm">Nome</Label>
+        <Input
+          type="text"
+          {...register("name")}
           placeholder="Seu nome completo"
-          className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-sm min-h-[51px]" />
+          className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-sm min-h-[51px]"
+        />
         {errors.name && <span className="text-red-500 text-xs">{errors.name.message}</span>}
       </div>
 
       <div>
-        <label className="block mb-1 text-dark font-medium text-sm">Email</label>
-        <input type="email" {...register("email")}
+        <Label className="block mb-1 text-dark font-medium text-sm">Email</Label>
+        <Input
+          type="email"
+          {...register("email")}
           placeholder="e-mail@website.com"
-          className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-sm min-h-[51px]" />
+          className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-sm min-h-[51px]"
+        />
         {errors.email && <span className="text-red-500 text-xs">{errors.email.message}</span>}
       </div>
 
       <div>
-        <label className="block mb-1 text-dark font-medium text-sm">Senha</label>
-        <input type="password" {...register("password")}
+        <Label className="block mb-1 text-dark font-medium text-sm">Senha</Label>
+        <Input
+          type="password"
+          {...register("password")}
           placeholder="min. 8 caracteres"
-          className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-sm min-h-[51px]" />
+          className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-sm min-h-[51px]"
+        />
         {errors.password && <span className="text-red-500 text-xs">{errors.password.message}</span>}
       </div>
 
       <div>
-        <label className="block mb-1 text-dark font-medium text-sm">Confirmar senha</label>
-        <input type="password" {...register("confirmPassword")}
+        <Label className="block mb-1 text-dark font-medium text-sm">Confirmar senha</Label>
+        <Input
+          type="password"
+          {...register("confirmPassword")}
           placeholder="Repita sua senha"
-          className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-sm min-h-[51px]" />
+          className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-sm min-h-[51px]"
+        />
         {errors.confirmPassword && <span className="text-red-500 text-xs">{errors.confirmPassword.message}</span>}
       </div>
 
       {error && <div className="text-red-500 text-xs mb-2">{error}</div>}
 
       <div className="flex items-center gap-2 py-2">
-        <input
-          type="checkbox"
+        <Checkbox
           checked={acceptTerms}
-          onChange={() => setAcceptTerms(!acceptTerms)}
-          className="w-4 h-4 accent-primary rounded"
+          onCheckedChange={(checked) => setAcceptTerms(checked as boolean)}
+          className="w-4 h-4"
         />
-        <label className="text-xs text-dark select-none font-medium">
+        <Label className="text-xs text-dark select-none font-medium">
           Concordo com os <a href="#" className="text-primary font-semibold hover:underline">Termos e Condições</a>
-        </label>
+        </Label>
       </div>
 
-      <button type="submit" className="w-full bg-primary hover:bg-dark text-white font-semibold rounded-lg py-2.5 transition disabled:opacity-60 text-sm min-h-[51px]" disabled={isSubmitting || !acceptTerms}>
+      <Button
+        type="submit"
+        className="w-full bg-primary hover:bg-dark text-white font-semibold rounded-lg py-2.5 transition disabled:opacity-60 text-sm min-h-[51px]"
+        disabled={isSubmitting || !acceptTerms}
+      >
         Cadastrar
-      </button>
+      </Button>
 
-      <button type="button" className="w-full flex items-center justify-center gap-2 border border-gray-200 rounded-lg py-2.5 font-semibold text-gray-700 bg-white hover:bg-gray-50 transition text-sm min-h-[51px]" onClick={() => signIn("google", { callbackUrl: "/dashboard" })}>
+      <Button
+        type="button"
+        variant="outline"
+        className="w-full flex items-center justify-center gap-2 border border-gray-200 rounded-lg py-2.5 font-semibold text-gray-700 bg-white hover:bg-gray-50 transition text-sm min-h-[51px]"
+        onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
+      >
         <Image src={LogoGoogle} alt="Google" width={18} height={18} />
         Entrar com o Google
-      </button>
+      </Button>
 
       <div className="text-center text-xs text-dark pt-1 font-medium">
         Já tem conta? <button type="button" onClick={() => onSwitchTab?.("login")} className="text-primary font-semibold hover:underline bg-transparent border-none cursor-pointer">Entrar</button>
