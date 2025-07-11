@@ -4,8 +4,23 @@ const nextConfig = {
     serverComponentsExternalPackages: ['@prisma/client', 'bcryptjs']
   },
   images: {
-    domains: ['lh3.googleusercontent.com']
-  }
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
+  },
+  typescript: {
+    // Durante o build de produção, ignora erros de tipos se necessário
+    ignoreBuildErrors: false,
+  },
+  eslint: {
+    // Durante o build de produção, ignora erros de lint se necessário
+    ignoreDuringBuilds: false,
+  },
 }
 
 module.exports = nextConfig
